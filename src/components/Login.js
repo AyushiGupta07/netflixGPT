@@ -2,19 +2,27 @@ import { useState } from "react";
 import Header from "./Header";
 import { validData } from "../utils/validate";
 import { useRef } from "react";
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const email = useRef(null);
   const password = useRef(null);
+  const auth = getAuth();
   const toggleSignUpForm = () => {
     setIsSignInForm(!isSignInForm);
   };
   const handleButtonClick = () => {
     const data = validData(email.current.value, password.current.value);
-    if (data != null) {
-      setErrorMessage(data);
+    setErrorMessage(data);
+    if(data) return;
+    //Sign in and Sign Up
+    if(!isSignInForm){
+      createUserWithEmailAndPassword()
+      //sing Up
+
+
     }
 
     // validate the form data
@@ -43,13 +51,13 @@ const Login = () => {
           ref={email}
           type="email"
           placeholder="Email Address"
-          className="my-2 p-3 w-full bg-gray-800"
+          className="my-2 p-3 w-full bg-gray-800 text-white"
         ></input>
         {!isSignInForm && (
           <input
             type="name"
             placeholder="name"
-            className="my-2 p-3 w-full bg-gray-800"
+            className="my-2 p-3 w-full bg-gray-800 text-white"
           ></input>
         )}
 
@@ -57,7 +65,7 @@ const Login = () => {
           ref={password}
           type="password"
           placeholder="Password"
-          className="my-2 p-3 w-full bg-gray-800"
+          className="my-2 p-3 w-full bg-gray-800 text-white"
         ></input>
         <p className="text-red-700 text-lg font-bold">{errorMessage}</p>
         <button
