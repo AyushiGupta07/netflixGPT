@@ -6,11 +6,11 @@ const VideoTitle = ({ title, overview }) => {
       <h1 className="text-6xl font-bold text-white">{title}</h1>
       <p className="p-6 text-lg w-1/2 text-white">{overview}</p>
       <div className="flex ">
-        <button className="border-black bg-white text-black text-xl p-4 px-16 border rounded-lg opacity-50 mx-2 hover:bg-opacity-50">
+        <button className="border-black bg-white text-black text-xl p-4 px-16 rounded-lg mx-2 hover:bg-opacity-50">
           {" "}
-           Play
+          Play
         </button>
-        <button className="border-black bg-white text-black text-xl p-4 px-16 border rounded-lg opacity-50 hover:bg-opacity-50">
+        <button className="border-black bg-white text-black text-xl p-4 px-16 rounded-lg hover:bg-opacity-50">
           More Info
         </button>
       </div>
