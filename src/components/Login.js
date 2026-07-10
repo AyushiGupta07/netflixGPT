@@ -2,52 +2,75 @@ import { useState } from "react";
 import Header from "./Header";
 import { validData } from "../utils/validate";
 import { useRef } from "react";
-import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const Login = () => {
+
+  const dispatch = useDispatch();
+
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
 
-  
   const toggleSignUpForm = () => {
     setIsSignInForm(!isSignInForm);
   };
+
   const handleButtonClick = async () => {
     const data = validData(email.current.value, password.current.value);
     setErrorMessage(data);
-    if(data) return;
+    if (data) return;
     //Sign Up
-    if(!isSignInForm){
-      try{
-      const user = await createUserWithEmailAndPassword(auth,email.current.value,password.current.value);
-      console.log(user.user);
+    if (!isSignInForm) {
+      try {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value,
+        );
+        //update profile
+        updateProfile({ user, displayName: name.current.value })
+          .then(() => {
 
-      }catch(err){
-        const errorCode =  err.code;
+            const { uid, email, displayName } = auth.currentUser;
+            dispatch(
+              addUser({ uid: uid, email: email, displayName: displayName }),
+            );
+          })
+          .catch((err) => {
+            setErrorMessage(err.message);
+          });
+
+      } catch (err) {
+        const errorCode = err.code;
         const errorMessage = err.message;
         setErrorMessage(errorCode + " " + errorMessage);
         console.error(err);
-
       }
-    }else{
-      try{
-      const user = await signInWithEmailAndPassword(auth,email.current.value,password.current.value);
-      console.log(user.user);
-
-      }catch(err){
-        const errorCode =  err.code;
+    } else {
+      try {
+        const user = await signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value,
+        );
+      } catch (err) {
+        const errorCode = err.code;
         const errorMessage = err.message;
         setErrorMessage(errorCode + " " + errorMessage);
         console.error(err);
-
       }
-
     }
 
-    // validate the form data
-    // const str = validData(em);
   };
   return (
     <div>
@@ -76,6 +99,7 @@ const Login = () => {
         ></input>
         {!isSignInForm && (
           <input
+            ref={name}
             type="name"
             placeholder="name"
             className="my-2 p-3 w-full bg-gray-800 text-white"

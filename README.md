@@ -8,6 +8,13 @@
 - routing
 - Form Validation
 - useRef
+- Create Sign In and Sign Up
+- If the user is not logged In , user cannot go on browse page
+- if the user is in browse page, he cannot go on login page
+- Adding a TMDB api in browse page and getting the movies in browse page
+- created custom hook
+- Created a video container
+- adding title and button for play and more info
 
 # Features
 
