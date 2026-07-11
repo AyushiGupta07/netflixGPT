@@ -10,8 +10,8 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BACKGROUND_IMAGE } from "../utils/constants";
 const Login = () => {
-
   const dispatch = useDispatch();
 
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -40,7 +40,6 @@ const Login = () => {
         //update profile
         updateProfile({ user, displayName: name.current.value })
           .then(() => {
-
             const { uid, email, displayName } = auth.currentUser;
             dispatch(
               addUser({ uid: uid, email: email, displayName: displayName }),
@@ -49,7 +48,6 @@ const Login = () => {
           .catch((err) => {
             setErrorMessage(err.message);
           });
-
       } catch (err) {
         const errorCode = err.code;
         const errorMessage = err.message;
@@ -70,17 +68,12 @@ const Login = () => {
         console.error(err);
       }
     }
-
   };
   return (
     <div>
       <Header />
-      <div>
-        <img
-          className="absolute"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/2f42605e-e786-4a06-8612-ebc67c55ba6c/web/IN-en-20260629-TRIFECTA-perspective_76b17e8c-cff9-4c65-9938-08ca5029be6b_small.jpg"
-          alt="Login Background"
-        />
+      <div className="absolute">
+        <img src={BACKGROUND_IMAGE} alt="Login Background" />
       </div>
       <form
         onSubmit={(e) => {

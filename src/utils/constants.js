@@ -4,6 +4,8 @@ export const NETFLIX_LOGO =
 export const USER_LOGO =
   "https://occ-0-3647-3646.1.nflxso.net/dnm/api/v6/SO2HoVCx33X8phZh2pZZmQ4QgNY/AAAABSfNa2a8_t93AY6PA9vALo5L7Nh1DYqRuQx2qjPlbKMckzSgr9mrDq2sIRhswdrpQEA7jVV02hDrIpPSu107oMj404ADJ10.png?r=3a2";
 
+export const BACKGROUND_IMAGE = "https://assets.nflxext.com/ffe/siteui/vlv3/2f42605e-e786-4a06-8612-ebc67c55ba6c/web/IN-en-20260629-TRIFECTA-perspective_76b17e8c-cff9-4c65-9938-08ca5029be6b_small.jpg";
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {
@@ -13,3 +15,5 @@ export const API_OPTIONS = {
   },
 };
 export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const SUPPORTED_LANGUAGES = [{identifier:"en",name:"English"},{identifier:"hindi",name:"Hindi"},{identifier:"spanish",name:"Spanish"}]

@@ -15,6 +15,9 @@
 - created custom hook
 - Created a video container
 - adding title and button for play and more info
+- adding search bar
+- add GPT button
+- add multi lingual feature
 
 # Features
 
