@@ -3,7 +3,7 @@ import lang from "../utils/languageConstants.js";
 import { useDispatch, useSelector } from "react-redux";
 import { client } from "../utils/openai.js";
 import { GoogleGenAI } from "@google/genai";
-import { API_OPTIONS, GEMINI_AI } from "../utils/constants.js";
+import { API_OPTIONS, GEMINI_AI} from "../utils/constants.js";
 import { addGPTMovieResult } from "../utils/gptSlice.js";
 
 const GPTSearchBar = () => {

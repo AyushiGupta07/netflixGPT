@@ -18,6 +18,11 @@
 - adding search bar
 - add GPT button
 - add multi lingual feature
+- get gemini api key for fteching the search movies
+- fetched gemini movies
+- make website responsive
+- reuse movie list component
+- added memoization - api is getting called again and again and api data is already in redux so only calling api when data is not inside the store
 
 # Features
 
