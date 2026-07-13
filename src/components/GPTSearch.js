@@ -9,7 +9,7 @@ const GPTSearch = () => {
       <div className="absolute -z-10">
         <img src={BACKGROUND_IMAGE} alt="Login Background" />
       </div>
-
+      
       <GPTSearchBar />
       <GPTMovieSuggestions />
     </div>
